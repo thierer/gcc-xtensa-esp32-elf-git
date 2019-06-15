@@ -7,6 +7,7 @@ pkgbase = gcc-xtensa-esp32-elf-git
 	license = Apache
 	makedepends = gcc
 	makedepends = git
+	makedepends = help2man
 	makedepends = make
 	makedepends = flex
 	makedepends = bison
