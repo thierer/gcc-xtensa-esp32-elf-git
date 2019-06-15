@@ -1,6 +1,6 @@
 pkgbase = gcc-xtensa-esp32-elf-git
 	pkgdesc = ESP32 GCC Cross-compiler Toolchain
-	pkgver = 1.22.0.r75.gbaf03c2c
+	pkgver = 1.22.0.r81.g2411e6ac
 	pkgrel = 1
 	url = https://esp-idf.readthedocs.io/en/latest/get-started/linux-setup.html
 	arch = x86_64
@@ -19,7 +19,7 @@ pkgbase = gcc-xtensa-esp32-elf-git
 	conflicts = gcc-xtensa-esp32-elf-bin
 	options = !libtool
 	options = !buildflags
-	source = git+https://github.com/espressif/crosstool-NG.git#branch=xtensa-1.22.x
+	source = git+https://github.com/thierer/crosstool-NG.git#branch=xtensa-1.22.x
 	md5sums = SKIP
 
 pkgname = gcc-xtensa-esp32-elf-git

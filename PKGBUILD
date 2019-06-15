@@ -1,7 +1,7 @@
 # Maintainer: Alexei Karpenko <alexei@karpenko.ca>
 pkgname=gcc-xtensa-esp32-elf-git
 _pkgname=crosstool-NG
-pkgver=1.22.0.r75.gbaf03c2c
+pkgver=1.22.0.r81.g2411e6ac
 pkgrel=1
 pkgdesc='ESP32 GCC Cross-compiler Toolchain'
 arch=(x86_64)
@@ -12,7 +12,7 @@ makedepends=(gcc git make flex bison gperf)
 provides=(gcc-xtensa-esp32-elf)
 conflicts=(gcc-xtensa-esp32-elf-bin)
 options=(!libtool !buildflags)
-source=(git+https://github.com/espressif/crosstool-NG.git#branch=xtensa-1.22.x)
+source=(git+https://github.com/thierer/crosstool-NG.git#branch=xtensa-1.22.x)
 md5sums=('SKIP')
 
 pkgver() {
