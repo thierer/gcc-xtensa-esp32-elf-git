@@ -14,9 +14,11 @@ conflicts=(gcc-xtensa-esp32-elf-bin)
 options=(!libtool !buildflags)
 source=(
 	git+https://github.com/thierer/crosstool-NG.git#branch=xtensa-1.22.x
-	0015-fix-too-many-template-parameters.patch::https://github.com/staticfloat/gcc/commit/94801184df727b94bf7b8d64b1f98a22f51325d7.patch)
+	0015-fix-too-many-template-parameters.patch::https://github.com/staticfloat/gcc/commit/94801184df727b94bf7b8d64b1f98a22f51325d7.patch
+	1000-gdb-python-3-7.patch::https://raw.githubusercontent.com/thierer/esp-open-sdk/9755038a67305047660dbf844f1d1f19bdd2f1e9/1000-gdb-python-3-7.patch)
 md5sums=('SKIP'
-         '8493778dc92ea5231c94ade075f524ac')
+         '8493778dc92ea5231c94ade075f524ac'
+         '133effcb81ac2ac8190388af00fe631f')
 
 pkgver() {
   cd "$srcdir/${_pkgname}"
@@ -26,6 +28,8 @@ pkgver() {
 
 prepare() {
   cp -f 0015-fix-too-many-template-parameters.patch $srcdir/${_pkgname}/local-patches/gcc/5.2.0/
+  mkdir -p $srcdir/${_pkgname}/local-patches/gdb/7.10/
+  cp -f 1000-gdb-python-3-7.patch $srcdir/${_pkgname}/local-patches/gdb/7.10/
 }
 
 build() {

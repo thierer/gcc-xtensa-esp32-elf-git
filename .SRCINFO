@@ -21,8 +21,10 @@ pkgbase = gcc-xtensa-esp32-elf-git
 	options = !buildflags
 	source = git+https://github.com/thierer/crosstool-NG.git#branch=xtensa-1.22.x
 	source = 0015-fix-too-many-template-parameters.patch::https://github.com/staticfloat/gcc/commit/94801184df727b94bf7b8d64b1f98a22f51325d7.patch
+	source = 1000-gdb-python-3-7.patch::https://raw.githubusercontent.com/thierer/esp-open-sdk/9755038a67305047660dbf844f1d1f19bdd2f1e9/1000-gdb-python-3-7.patch
 	md5sums = SKIP
 	md5sums = 8493778dc92ea5231c94ade075f524ac
+	md5sums = 133effcb81ac2ac8190388af00fe631f
 
 pkgname = gcc-xtensa-esp32-elf-git
 
