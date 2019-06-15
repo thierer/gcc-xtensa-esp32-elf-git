@@ -12,13 +12,20 @@ makedepends=(gcc git make flex bison gperf)
 provides=(gcc-xtensa-esp32-elf)
 conflicts=(gcc-xtensa-esp32-elf-bin)
 options=(!libtool !buildflags)
-source=(git+https://github.com/thierer/crosstool-NG.git#branch=xtensa-1.22.x)
-md5sums=('SKIP')
+source=(
+	git+https://github.com/thierer/crosstool-NG.git#branch=xtensa-1.22.x
+	0015-fix-too-many-template-parameters.patch::https://github.com/staticfloat/gcc/commit/94801184df727b94bf7b8d64b1f98a22f51325d7.patch)
+md5sums=('SKIP'
+         '8493778dc92ea5231c94ade075f524ac')
 
 pkgver() {
   cd "$srcdir/${_pkgname}"
   # cutting off 'crosstool.ng.' prefix that present in the git tag
   git describe --long | sed 's/^crosstool.ng.//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+prepare() {
+  cp -f 0015-fix-too-many-template-parameters.patch $srcdir/${_pkgname}/local-patches/gcc/5.2.0/
 }
 
 build() {
