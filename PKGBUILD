@@ -47,8 +47,8 @@ build() {
 }
 
 package() {
-  cd "$srcdir/${_pkgname}"
-  for file in builds/xtensa-esp32-elf/bin/xtensa-esp32-elf*; do
-    install -m 755 -D -t "$pkgdir/usr/bin" "${file}"
-  done
+  mkdir -p $pkgdir/usr/
+  cd $srcdir/${_pkgname}/builds/xtensa-esp32-elf/
+  cp -a -t $pkgdir/usr/ bin/ lib/ libexec/ xtensa-esp32-elf/
+  find $pkgdir/usr/ -type d -exec chmod 755 {} +
 }
