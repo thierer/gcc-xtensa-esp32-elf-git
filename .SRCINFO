@@ -1,7 +1,7 @@
 pkgbase = gcc-xtensa-esp32-elf-git
 	pkgdesc = ESP32 GCC Cross-compiler Toolchain
-	pkgver = 1.22.0.r81.g2411e6ac
-	pkgrel = 1
+	pkgver = 1.22.0.r80.g6c4433a5
+	pkgrel = 2
 	url = https://esp-idf.readthedocs.io/en/latest/get-started/linux-setup.html
 	arch = x86_64
 	license = Apache
@@ -20,10 +20,12 @@ pkgbase = gcc-xtensa-esp32-elf-git
 	conflicts = gcc-xtensa-esp32-elf-bin
 	options = !libtool
 	options = !buildflags
-	source = git+https://github.com/thierer/crosstool-NG.git#branch=xtensa-1.22.x
+	source = git+https://github.com/espressif/crosstool-NG.git#branch=xtensa-1.22.x
+	source = 0000-crosstool-ng-fix-for-bash-5.patch::https://github.com/jcmvbkbc/crosstool-NG/commit/a4286b8c9b61a48ee802cf633f0ff19c6cf10ae5.patch
 	source = 0015-fix-too-many-template-parameters.patch::https://github.com/staticfloat/gcc/commit/94801184df727b94bf7b8d64b1f98a22f51325d7.patch
 	source = 1000-gdb-python-3-7.patch::https://raw.githubusercontent.com/thierer/esp-open-sdk/9755038a67305047660dbf844f1d1f19bdd2f1e9/1000-gdb-python-3-7.patch
 	md5sums = SKIP
+	md5sums = 98b910b00e1801fbc943fae9000fcd37
 	md5sums = 8493778dc92ea5231c94ade075f524ac
 	md5sums = 133effcb81ac2ac8190388af00fe631f
 
