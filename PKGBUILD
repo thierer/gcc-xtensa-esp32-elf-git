@@ -2,7 +2,7 @@
 pkgname=gcc-xtensa-esp32-elf-git
 _pkgname=crosstool-NG
 pkgver=1.22.0.r80.g6c4433a5
-pkgrel=2
+pkgrel=3
 pkgdesc='ESP32 GCC Cross-compiler Toolchain'
 arch=(x86_64)
 url='https://esp-idf.readthedocs.io/en/latest/get-started/linux-setup.html'
@@ -45,13 +45,22 @@ build() {
 
   echo Building xtensa-esp32-elf...
   ./ct-ng xtensa-esp32-elf 
-  sed -i 's/^CT_GDB_CROSS_EXTRA_CONFIG_ARRAY.*/CT_GDB_CROSS_EXTRA_CONFIG_ARRAY="--with-guile=guile-2.0"/g' .config
+  sed -i 's|^CT_GDB_CROSS_EXTRA_CONFIG_ARRAY.*|CT_GDB_CROSS_EXTRA_CONFIG_ARRAY="--with-guile=guile-2.0 --datadir=\\\"${CT_PREFIX_DIR}/${CT_TARGET}/share\\\""|g' .config
+  # Installation would fail because crosstool-NG doesn't know about
+  # the modified datadir. We'll install gdbinit in package() later
+  sed -i 's|CT_GDB_INSTALL_GDBINIT=y|CT_GDB_INSTALL_GDBINIT=n|g' .config
   ./ct-ng build
 }
 
 package() {
   mkdir -p $pkgdir/usr/
   cd $srcdir/${_pkgname}/builds/xtensa-esp32-elf/
+
   cp -a -t $pkgdir/usr/ bin/ lib/ libexec/ xtensa-esp32-elf/
+  cp -a share/gcc-5.2.0 $pkgdir/usr/xtensa-esp32-elf/share/
+  # install global gdb_init in order to support libstdc++ pretty printers
+  # adapted from crosstool-NG/scripts/build/debug/300-gdb.sh#141
+  sed -e 's:@@PREFIX@@:/usr/xtensa-esp32-elf:' -e 's:@@VERSION@@:5.2.0:' $srcdir/${_pkgname}/scripts/build/debug/gdbinit.in >$pkgdir/usr/xtensa-esp32-elf/share/gdb/gdbinit
+
   find $pkgdir/usr/ -type d -exec chmod 755 {} +
 }

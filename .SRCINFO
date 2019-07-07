@@ -1,7 +1,7 @@
 pkgbase = gcc-xtensa-esp32-elf-git
 	pkgdesc = ESP32 GCC Cross-compiler Toolchain
 	pkgver = 1.22.0.r80.g6c4433a5
-	pkgrel = 2
+	pkgrel = 3
 	url = https://esp-idf.readthedocs.io/en/latest/get-started/linux-setup.html
 	arch = x86_64
 	license = Apache
